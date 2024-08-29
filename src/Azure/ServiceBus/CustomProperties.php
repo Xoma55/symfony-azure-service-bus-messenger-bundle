@@ -33,7 +33,7 @@ final class CustomProperties implements \ArrayAccess, \IteratorAggregate {
     $properties = [];
     foreach ($headers as $name => $values) {
       if (isset($values[0])) {
-        $properties[$name] = \stripslashes(\trim($values[0], '"'));
+        $properties[$name] = $values[0];
       }
     }
 

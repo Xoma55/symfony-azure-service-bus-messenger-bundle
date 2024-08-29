@@ -89,8 +89,12 @@ class AzureServiceBusReceiver implements ReceiverInterface, QueueReceiverInterfa
       return;
     }
 
+    $customProperties = $brokerMessage->getCustomProperties();
+    $data = json_decode($customProperties['jsondata']);
+
     $envelope = $this->serializer->decode([
-      'body' => $brokerMessage->getBody(),
+      //'body' => $brokerMessage->getBody(),
+      'body' => json_decode($data, true),
       'headers' => $this->createHeaders($brokerMessage)
     ]);
 
